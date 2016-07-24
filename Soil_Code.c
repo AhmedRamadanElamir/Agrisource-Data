@@ -8,7 +8,7 @@ void setup()
 
 void loop()
 {
-  soilData = analogRead(soil));
+  soilData = analogRead(soil);
   Serial.println(soilData);
   delay(1000);
 }
