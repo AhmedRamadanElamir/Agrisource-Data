@@ -19,7 +19,7 @@ int I2C_ADDRESS = 0x77;  // sensor address
 // 0 = ultra low power
 // 1 = standard
 // 2 = high
-// 3 = ultra high resolution
+// 3 = ultra high resolution 
 const unsigned char oversampling_setting = 3; //oversampling for measurement
 const unsigned char pressure_conversiontime[4] = { 
   5, 8, 14, 26 };  // delays for oversampling settings 0, 1, 2 and 3   
