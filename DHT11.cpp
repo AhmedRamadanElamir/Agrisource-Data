@@ -1,7 +1,8 @@
 #include "Arduino.h"
 #include "DHT11.h"
 
-char DHpin = PB_5;
+#define  DHpin PB_5 
+
 char dat[5];
 
 fclass::fclass(){
