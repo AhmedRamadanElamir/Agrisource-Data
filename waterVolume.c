@@ -25,5 +25,5 @@ void loop ()
 waterUsed += Calc*0.000277777;
 Serial.print(waterUsed, DEC);
 Serial.print("L\r\n");
-delay(1000);
+delay(1000); 
 }
