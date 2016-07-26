@@ -1,4 +1,4 @@
-#include "Arduino.h"
+#include <Energia.h>
 #include "DHT11.h"
 
 #define  DHpin PB_5 
