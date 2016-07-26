@@ -9,7 +9,6 @@ fclass::fclass(){
 }
 
 void fclass::dht_init(){
-    Serial.begin(9600);
 	pinMode(DHpin,OUTPUT);
   	delay(1000);
 }
