@@ -11,6 +11,7 @@
 #define pinRain    2  // Anenometer connected to pin 2 - Int 0 - Mega   / Uno Pin 3 
 #define intAnem    5  // int 0 (check for Uno)
 #define intRain    1  // int 1
+#define soil       PB_5 //PB_5 pin in Tiva C board
        
 SDL_Weather_80422 weatherStation(pinAnem, pinRain, intAnem, intRain, A0, SDL_MODE_INTERNAL_AD);
 TwoWire i2c_port(2);
@@ -26,7 +27,6 @@ int32_t pressure = 0;
 double hpa_current=0;
 double hpa_baseline=0;
 double temperature_c=0;
-int soil = PB_5;
 int soilData;
 
 void setup()
