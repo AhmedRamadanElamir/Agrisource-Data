@@ -6,9 +6,8 @@
 #include <Time.h>
 #include "SDL_Weather_80422.h"
 
-#define pinLED     13   // LED connected to digital pin 13
-#define pinAnem    18  // Anenometer connected to pin 18 - Int 5 - Mega   / Uno pin 2
-#define pinRain    2  // Anenometer connected to pin 2 - Int 0 - Mega   / Uno Pin 3 
+#define pinAnem    18  //Uno pin 2
+#define pinRain    2  // Uno Pin 3 
 #define intAnem    5  // int 0 (check for Uno)
 #define intRain    1  // int 1
 #define soil = PB_5;
@@ -42,7 +41,7 @@ void setup()
 void loop()
 {
   operate_BMP180();
- 	 operate_DHT11();
+  operate_DHT11();
   operate_OPT3001();
   operate_rain_wind();
   operate_soil();
@@ -106,7 +105,7 @@ String data = "baromin=";
   return data;
 }
 
-void operate_DHT11(){ //ID:5
+String operate_DHT11(){ //ID:5
 String data = "tempf=";
   delay(200);
   dht.start_test();
@@ -119,7 +118,7 @@ String data = "tempf=";
   delay(700);
 }
 
-void operate_OPT3001(){ //ID:6
+String operate_OPT3001(){ //ID:6
 String data = "visibility=";
   uint32_t readings;
   readings = opt3001.readResult();  
