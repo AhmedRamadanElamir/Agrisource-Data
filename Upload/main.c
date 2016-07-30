@@ -58,13 +58,15 @@ data.concat("&");
 data.concat("PASSWORD=");
 data.concat(PASSWORD);
 data.concat("&dateutc=now&");
-data.concat(get_BMP180());	
+data.concat(get_BMP180());
 data.concat("&");
-data.concat(get_DHT11());
-data.concat("&");
-data.concat(get_OPT3001());
-data.concat("&");
-data.concat(get_rain_wind());
+data.concat(get_soil());
+//data.concat("&");
+//data.concat(get_DHT11());
+//data.concat("&");
+//data.concat(get_OPT3001());
+//data.concat("&");
+//data.concat(get_rain_wind());
 data.concat("&softwaretype=vws%20versionxx&action=updateraw");
 
 Serial.println(data);
@@ -78,32 +80,32 @@ delay(5000);
 void init_soil(){
 	 pinMode(soil,INPUT);
 }
-
+/*
 void init_OPT3001(){
 	delay(100);
   opt3001.begin(); 
 }
-
+*/
 void init_BMP180(){
   i2c_port.begin();
   delay(10);
   getCalibrationData();
   readSensor();
 }
-
+/*
 void init_rain_wind(){     
       weatherStation.setWindMode(SDL_MODE_SAMPLE, 5.0);
       //weatherStation.setWindMode(SDL_MODE_DELAY, 5.0);
       totalRain = 0.0;
 }
-
+*/
 String get_soil(){ //ID:1
   String data ="soilmoisture=";
   data.concat(analogRead(soil));
   return data;
   delay(100);
 }
-
+/*
 String get_rain_wind(){ // rain ID:2, wind ID:3
   String data;
   currentWindSpeed = weatherStation.current_wind_speed()/1.6;
@@ -120,14 +122,14 @@ String get_rain_wind(){ // rain ID:2, wind ID:3
   return data;
   delay(100);
 }
-
+*/
 String get_BMP180(){ //ID:4
   String data = "baromin=";
   readSensor(temperature,pressure);
  data.concat(pressure);                               
   return data;
 }
-
+/*
 String get_DHT11(){ //ID:5
 String data = "tempf=";
   delay(200);
@@ -140,7 +142,8 @@ String data = "tempf=";
   return data;
   delay(700);
 }
-
+*/
+/*
 String get_OPT3001(){ //ID:6
 String data = "visibility=";
   uint32_t readings;
@@ -149,5 +152,5 @@ String data = "visibility=";
   return data;
   delay(800);
 }
-
+*/
 
