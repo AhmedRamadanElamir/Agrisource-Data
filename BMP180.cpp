@@ -21,23 +21,8 @@ int16_t mc;
 int16_t md;
 
 
-
-char debug(char *fmt, ... ){
-  char buf[128]; // resulting string limited to 128 chars
-  va_list args;
-  va_start (args, fmt );
-  vsnprintf(buf, 128, fmt, args);
-  va_end (args);
-  return buf;
-}
-
-double calculate_sea_level(double p,double alt){
-  return p / pow( ( 1.0 - (alt/44330.0)) , 5.255);
-}
-
-
 // read temperature and pressure from sensor
-void readSensor() {
+void readSensor(int &temperature, int &pressure) {
 
   int  ut= readUT();
   long up = readUdebug();
