@@ -85,11 +85,14 @@ void SIM800l::httpPost(String data)
 	Serial->println("AT+HTTPPARA=\"CID\",1");
 	GSM->confirmAtCommand("OK",5000);
 	
-	Serial->println("AT+HTTPPARA=\"URL\",data); //web address to send data to
+	Serial->println("AT+HTTPPARA=\"URL\",\"https://weatherstation.wunderground.com/weatherstation/updateweatherstation.php\""); //web address to send data to
 	GSM->confirmAtCommand("OK",5000);
 	
-	Serial->println("AT+HTTPDATA=100,10000"); //100 refers to how many bytes you're sending.  You'll probably have to tweak or just put a large #
+	Serial->println("AT+HTTPDATA=200,10000"); //100 refers to how many bytes you're sending.  You'll probably have to tweak or just put a large #
 	GSM->confirmAtCommand("DOWNLOAD",5000);
+	
+	Serial->println(data); 
+	GSM->confirmAtCommand("OK",5000);
 	
 	Serial->println("AT+HTTPACTION=1"); //POST the data
 	GSM->confirmAtCommand("ACTION:",5000);
