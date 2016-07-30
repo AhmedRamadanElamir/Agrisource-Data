@@ -96,13 +96,14 @@ String operate_rain_wind(){ // rain ID:2, wind ID:3
   delay(100);
 }
 
-void operate_BMP180(){ //ID:4
+String operate_BMP180(){ //ID:4
+String data = "baromin=";
   readSensor();
   hpa_current=pressure*0.01;
   temperature_c=temperature/10.0;
-  debug("4,%.2f C\r",temperature,temperature_c); 
+ data.concat(pressure);                                  //need editing !!!!
   debug(",%.2f hPa\r\n",pressure,hpa_current);
-  #define hpa_sea 1013.25
+  return data;
 }
 
 void operate_DHT11(){ //ID:5
