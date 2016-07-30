@@ -73,7 +73,7 @@ void init_rain_wind(){
 }
 
 String operate_soil(){ //ID:1
-  String data ="1,";
+  String data ="soilmoisture=";
   data.concat(analogRead(soil));
   return data;
   delay(100);
@@ -84,13 +84,13 @@ String operate_rain_wind(){ // rain ID:2, wind ID:3
   currentWindSpeed = weatherStation.current_wind_speed()/1.6;
   currentWindGust = weatherStation.get_wind_gust()/1.6;
   totalRain = totalRain + weatherStation.get_current_rain_total()/25.4;
-  data = "2,";
+  data = "rainin=";
   data.concat(totalRain);
-  data.concat("3,");
+  data.concat("&windspeedmph=");
   data.concat(currentWindSpeed);
-  data.concat(",");
+  data.concat("&windgustmph_10m=");
   data.concat(currentWindGust);
-  data.concat(",");
+  data.concat("&winddir=");
   data.concat(weatherStation.current_wind_direction());
   return data;
   delay(100);
@@ -106,20 +106,24 @@ void operate_BMP180(){ //ID:4
 }
 
 void operate_DHT11(){ //ID:5
+String data = "tempf=";
   delay(200);
   dht.start_test();
   tem=dht.get_Temp();
   hum=dht.get_Hum();
-  Serial.print("5,");
-  Serial.println(hum,DEC);
+  data.concat(temp);
+  data.concat("&humidity=");
+  data.concat(hum);
+  return data;
   delay(700);
 }
 
 void operate_OPT3001(){ //ID:6
+String data = "visibility=";
   uint32_t readings;
   readings = opt3001.readResult();  
-  Serial.print("6,");
-  Serial.println(readings, DEC);
+  data.concat(readings);
+  return data;
   delay(800);
 }
 
