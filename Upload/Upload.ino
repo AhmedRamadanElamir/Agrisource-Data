@@ -21,7 +21,7 @@ data.concat("&");
 data.concat("PASSWORD=");
 data.concat(PASSWORD);
 data.concat("&dateutc=now&");
-data = get_BMP180();	
+data.concat(get_BMP180());	
 data.concat("&");
 data.concat(get_DHT11());
 data.concat("&");
