@@ -22,6 +22,8 @@ data.concat(PASSWORD);
 data.concat("&dateutc=now&");
 data.concat(get_BMP180());	
 data.concat("&");
+data.concat(get_soil());
+data.concat("&");
 data.concat(get_DHT11());
 data.concat("&");
 data.concat(get_OPT3001());
