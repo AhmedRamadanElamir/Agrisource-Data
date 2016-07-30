@@ -22,13 +22,13 @@ int16_t md;
 
 
 
-void debug(char *fmt, ... ){
+char debug(char *fmt, ... ){
   char buf[128]; // resulting string limited to 128 chars
   va_list args;
   va_start (args, fmt );
   vsnprintf(buf, 128, fmt, args);
   va_end (args);
-  Serial.print(buf);
+  return buf;
 }
 
 double calculate_sea_level(double p,double alt){
