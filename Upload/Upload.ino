@@ -30,7 +30,7 @@ data.concat("&");
 data.concat(get_rain_wind());
 data.concat("&softwaretype=vws%20versionxx&action=updateraw");
 
-if(SIM800l.checkNetworkRegistration()==0)
+//if(SIM800l.checkNetworkRegistration()==0)
 httpPost(data);
 
 }
