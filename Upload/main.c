@@ -1,48 +1,78 @@
 #include <Energia.h>
 #include "BMP180.h"
 #include <Wire.h>
-#include "DHT11.h"
-#include <OPT3001.h>
+#include <SIM800l.h>
+//#include "DHT11.h"
+//#include <OPT3001.h>
 #include <Time.h>
-#include "SDL_Weather_80422.h"
+//#include "SDL_Weather_80422.h"
 
-#define pinAnem    18  //Uno pin 2
-#define pinRain    2  // Uno Pin 3 
-#define intAnem    5  // int 0 (check for Uno)
-#define intRain    1  // int 1
+/*
+String id = "ICAIRO9";
+String PASSWORD = "cccfshon";
+String URL = "https://weatherstation.wunderground.com/weatherstation/updateweatherstation.php?";
+
+SIM800l SIM800l;
+HardwareSerial Serial1;
+*/
+
+
+//#define pinAnem    18  //Uno pin 2
+//#define pinRain    2  // Uno Pin 3 
+//#define intAnem    5  // int 0 (check for Uno)
+//#define intRain    1  // int 1
 #define soil = PB_5;
-
-SDL_Weather_80422 weatherStation(pinAnem, pinRain, intAnem, intRain, A0, SDL_MODE_INTERNAL_AD);
+//SDL_Weather_80422 weatherStation(pinAnem, pinRain, intAnem, intRain, A0, SDL_MODE_INTERNAL_AD);
 TwoWire i2c_port(2);
-
-uint8_t i;
-float currentWindSpeed;
-float currentWindGust;
-float totalRain;
-opt3001 opt3001;
+//uint8_t i;
+//float currentWindSpeed;
+//float currentWindGust;
+//float totalRain;
+//opt3001 opt3001;
 char tem,hum;
 int32_t temperature = 0;
 int32_t pressure = 0;
 int soilData;
 
+
+
 void setup()
 {
   Serial.begin(9600);
+ // SIM800l(Serial1);
+ // SIM800l.init(9600);
+  
   init_BMP180();
-  dht.dht_init();
-  init_OPT3001();
-  init_rain_wind();
+  //dht.dht_init();
+  //init_OPT3001();
+  //init_rain_wind();
   init_soil();
 }
 
 void loop()
 {
-  operate_BMP180();
-  operate_DHT11();
-  operate_OPT3001();
-  operate_rain_wind();
-  operate_soil();
-  sleep(43200000);
+String data = URL;
+data.concat("ID=");
+data.concat(id);
+data.concat("&");
+data.concat("PASSWORD=");
+data.concat(PASSWORD);
+data.concat("&dateutc=now&");
+data.concat(get_BMP180());	
+data.concat("&");
+data.concat(get_DHT11());
+data.concat("&");
+data.concat(get_OPT3001());
+data.concat("&");
+data.concat(get_rain_wind());
+data.concat("&softwaretype=vws%20versionxx&action=updateraw");
+
+Serial.println(data);
+delay(5000);
+//if(SIM800l.checkNetworkRegistration()==0)
+//SIM800l.httpPost(data);
+
+//  sleep(3600000);
 }
 
 void init_soil(){
@@ -104,7 +134,7 @@ String data = "tempf=";
   dht.start_test();
   tem=dht.get_Temp();
   hum=dht.get_Hum();
-  data.concat(temp);
+  data.concat(tem);
   data.concat("&humidity=");
   data.concat(hum);
   return data;
