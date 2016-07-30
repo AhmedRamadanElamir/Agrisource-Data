@@ -67,14 +67,14 @@ void init_rain_wind(){
       totalRain = 0.0;
 }
 
-String operate_soil(){ //ID:1
+String get_soil(){ //ID:1
   String data ="soilmoisture=";
   data.concat(analogRead(soil));
   return data;
   delay(100);
 }
 
-String operate_rain_wind(){ // rain ID:2, wind ID:3
+String get_rain_wind(){ // rain ID:2, wind ID:3
   String data;
   currentWindSpeed = weatherStation.current_wind_speed()/1.6;
   currentWindGust = weatherStation.get_wind_gust()/1.6;
@@ -91,14 +91,14 @@ String operate_rain_wind(){ // rain ID:2, wind ID:3
   delay(100);
 }
 
-String operate_BMP180(){ //ID:4
+String get_BMP180(){ //ID:4
   String data = "baromin=";
   readSensor(temperature,pressure);
  data.concat(pressure);                               
   return data;
 }
 
-String operate_DHT11(){ //ID:5
+String get_DHT11(){ //ID:5
 String data = "tempf=";
   delay(200);
   dht.start_test();
@@ -111,7 +111,7 @@ String data = "tempf=";
   delay(700);
 }
 
-String operate_OPT3001(){ //ID:6
+String get_OPT3001(){ //ID:6
 String data = "visibility=";
   uint32_t readings;
   readings = opt3001.readResult();  
