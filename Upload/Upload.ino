@@ -8,7 +8,6 @@ SIM800l SIM800l;
 HardwareSerial Serial1;
 void setup(){
 Serial.begin(9600);
-Serial1.begin(9600);
 SIM800l(Serial1);
 SIM800l.init(9600);
 
@@ -31,7 +30,7 @@ data.concat(get_rain_wind());
 data.concat("&softwaretype=vws%20versionxx&action=updateraw");
 
 //if(SIM800l.checkNetworkRegistration()==0)
-httpPost(data);
+SIM800l.httpPost(data);
 
 }
 
