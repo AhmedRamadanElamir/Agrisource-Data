@@ -23,9 +23,6 @@ opt3001 opt3001;
 char tem,hum;
 int32_t temperature = 0;
 int32_t pressure = 0;
-double hpa_current=0;
-double hpa_baseline=0;
-double temperature_c=0;
 int soilData;
 
 void setup()
@@ -62,7 +59,6 @@ void init_BMP180(){
   delay(10);
   getCalibrationData();
   readSensor();
-  hpa_baseline=pressure*0.01;
 }
 
 void init_rain_wind(){     
@@ -96,12 +92,9 @@ String operate_rain_wind(){ // rain ID:2, wind ID:3
 }
 
 String operate_BMP180(){ //ID:4
-String data = "baromin=";
-  readSensor();
-  hpa_current=pressure*0.01;
-  temperature_c=temperature/10.0;
- data.concat(pressure);                                  //need editing !!!!
-  debug(",%.2f hPa\r\n",pressure,hpa_current);
+  String data = "baromin=";
+  readSensor(temperature,pressure);
+ data.concat(pressure);                               
   return data;
 }
 
