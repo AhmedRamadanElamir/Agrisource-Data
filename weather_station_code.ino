@@ -31,15 +31,7 @@ void setup()
  Serial1.println("AT+CFUN?");  //check phone functionality for debugging
 	delay(200);
 	communicate();
-
-  Serial1.println("AT+COPS=0");  //choose automatic operator selection 
-	delay(200);
-	communicate();
-
-  Serial1.println("AT+COPS?");  //check operator for debugging
-	delay(200);
-	communicate();
-
+	
 Serial1.println("AT+CREG=0");  //network registeration
 	delay(200);
 	communicate();
