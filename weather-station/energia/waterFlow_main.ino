@@ -19,6 +19,7 @@ calc_data();
 if(counter = 43200){
  send();
  counter = 0;
+ data = 0;
 }
 }
 
