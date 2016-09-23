@@ -1,7 +1,7 @@
 #include <Energia.h>
 #include "DHT11.h"
 
-#define  DHpin PB_5 
+#define  DHpin PF_4
 
 char dat[5];
 
