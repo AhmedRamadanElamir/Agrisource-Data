@@ -7,7 +7,7 @@
 #include "DHT11.h"
 
 int temperature, pressure;
-#define soil PB_5
+#define soil PB_5  //pin used for Soil sensor
 
 int  get_soil()
 {  
